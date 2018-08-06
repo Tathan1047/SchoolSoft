@@ -21,7 +21,8 @@ class AdminPaymentsconcepts(admin.ModelAdmin):
     list_display = ['paymentsconcepts']
 
 class AdminPayments(admin.ModelAdmin):
-    list_display = ['code_student', 'paymentsconcepts', 'valuepayments', 'datepayment', 'observations']
+    list_display = ['code_student', 'paymentsconcepts', 'valuepayments', 'datepayment',
+                    'paymentmethod','checknumber', 'observations']
 
 
 admin.site.register(Student, AdminStudent)

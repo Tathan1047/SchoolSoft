@@ -45,4 +45,7 @@ class Payments (models.Model):
     paymentsconcepts=models.ForeignKey(Paymentsconcepts, on_delete=models.CASCADE)
     valuepayments=models.IntegerField()
     datepayment=models.DateField()
+    paymentmethod = models.CharField(choices=(("Efectivo", "Efectivo"),
+                                              ("Cheque", "Cheque")), max_length=30)
+    checknumber=models.CharField(max_length=30, blank=True)
     observations=models.CharField(max_length=50,blank=True)
