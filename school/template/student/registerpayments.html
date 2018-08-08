@@ -1,11 +1,10 @@
 {% extends "base.html" %}
 {% block title %}Financiera | Pagos {% endblock %}
+{% block TitleForm %}Registro Pagos Financiera{% endblock %}
 {% block content %}
     <div class="container-fluid card-body">
-
         <form method="post">
             {% csrf_token %}
-            {% block TitleForm %}Registro Pagos Fianciera{% endblock %}
             {{  form.as_p }}
             <button type="submit" class="btn btn-primary">Guardar</button>
         </form>
