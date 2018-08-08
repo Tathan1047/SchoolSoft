@@ -28,7 +28,7 @@ class Student (models.Model):
     document_type = models.ForeignKey(Documenttype, on_delete=models.CASCADE)
     number_document=models.CharField(max_length=30)
     gender=models.CharField(choices=(("Masculino","Masculino"),("Femenino","Femenino")),max_length=30)
-    birthday=models.DateField
+    birthday=models.DateField()
     city= models.ForeignKey(City, on_delete=models.CASCADE)
     address=models.CharField(max_length=60)
     neighborhood=models.CharField(max_length=50)
