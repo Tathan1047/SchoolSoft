@@ -47,7 +47,7 @@
 					<ul class="site-logo">
 						<li>
 						<!-- START LOGO -->
-							<a href="base.html">
+							<a href="{% url 'student:inicio' %}">
 								<div class="logo">
 									<svg id="logo" width="25" height="25" viewBox="0 0 54.03 56.55">
 										<defs>
@@ -72,16 +72,26 @@
 					<ul class="nav metismenu">
 						<li class="sidebar-header"><span>Gestion Información SchoolSoft</span></li>
 						<li class="nav-dropdown active">
-							<a class="has-arrow" href="#" aria-expanded="false"><i class="icon dripicons-user-group"></i><span>Gestionar Estudiantes</span></a>
+							<a class="has-arrow " href="#" aria-expanded="false"><i class="icon dripicons-user-group"></i><span>Gestionar Estudiantes</span></a>
 							<ul class="collapse in nav-sub" aria-expanded="true">
-								<li class="active"><a href="base.html"><i class="icon dripicons-plus"></i><span>&nbsp;Registrar Estudiante</span></a></li>
-								<li><a href="dashboard.analytics.html"><i class="icon dripicons-list"></i><span>&nbsp;Listado Estudiantes</span></a></li>
+								<li><a href=""><i class="icon dripicons-plus"></i><span>&nbsp;Registrar Estudiante</span></a></li>
+								<li><a href="{% url 'student:liststudents' %}"><i class="icon dripicons-list"></i><span>&nbsp;Listado Estudiantes</span></a></li>
 								<li><a href="dashboard.financials.html"><i class="icon dripicons-search"></i><span>&nbsp;Buscar Estudiante</span></a></li>
 
 							</ul>
 						</li>
 
-						<li class="sidebar-header"><span>EXTRAS</span></li>
+						<li class="sidebar-header"><span>Contabilidad</span></li>
+						<li class="nav-dropdown">
+							<a class="has-arrow" href="#" aria-expanded="false"><i class="icon dripicons-document"></i><span>Gestión Financiera</span></a>
+							<ul class="collapse nav-sub" aria-expanded="false">
+								<li><a href="{% url 'student:registerpayments' %}"><i class="icon dripicons-plus"></i><span>&nbsp;Registrar Ingresos</span></a></li>
+								<li><a href="auth.register.html"><span>Register</span></a></li>
+								<li><a href="auth.forgot-password.html"><span>Forgot Password</span></a></li>
+							</ul>
+						</li>
+
+                        <li class="sidebar-header"><span>EXTRAS</span></li>
 						<li class="nav-dropdown">
 							<a class="has-arrow" href="#" aria-expanded="false"><i class="icon dripicons-lock"></i><span>Authentication</span></a>
 							<ul class="collapse nav-sub" aria-expanded="false">
