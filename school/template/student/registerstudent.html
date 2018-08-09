@@ -2,7 +2,8 @@
 {% block title %}Administrativa | Registro {% endblock %}
 {% block TitleForm %}Registro Estudiantes{% endblock %}
 {% block content %}
-     <div class="container-fluid card-body">
+   <div class="container-fluid card-body">
+
     {% if messages %}
         {% for message in messages %}
       <div class="alert alert-success alert-outline alert-dismissible fade show {{ message.tags }}" role="alert">
@@ -13,7 +14,6 @@
       </div>
     {% endfor %}
     {% endif %}
-
 
     <form method="post">
            {% csrf_token %}
