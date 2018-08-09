@@ -17,7 +17,73 @@
 
     <form method="post">
            {% csrf_token %}
-           {{  form.as_p }}
+           <div class="form-row">
+                <div class="form-group col-md-4">
+                     {{ form.code_student.label }}
+                     {{ form.code_student}}
+                </div>
+
+                <div class="form-group col-md-4">
+                     {{ form.name_student.label }}
+                     {{ form.name_student}}
+                </div>
+                <div class="form-group col-md-4">
+                   {{ form.lastname_student.label }}
+                   {{ form.lastname_student}}
+                </div>
+            </div>
+
+             <div class="form-row">
+                <div class="form-group col-md-3">
+                     {{ form.document_type.label }}
+                     {{ form.document_type}}
+                </div>
+                <div class="form-group col-md-3">
+                   {{ form.number_document.label }}
+                   {{ form.number_document}}
+                </div>
+                 <div class="form-group col-md-3">
+                   {{ form.gender.label }}
+                   {{ form.gender}}
+                </div>
+                 <div class="form-group col-md-3">
+                   {{ form.birthday.label }}
+                   {{ form.birthday}}
+                </div>
+            </div>
+
+             <div class="form-row">
+                <div class="form-group col-md-4">
+                     {{ form.city.label }}
+                     {{ form.city}}
+                </div>
+
+                <div class="form-group col-md-4">
+                     {{ form.address.label }}
+                     {{ form.address}}
+                </div>
+                <div class="form-group col-md-4">
+                   {{ form.neighborhood.label }}
+                   {{ form.neighborhood}}
+                </div>
+             </div>
+
+                 <div class="form-row">
+                <div class="form-group col-md-4">
+                     {{ form.number_telephone.label }}
+                     {{ form.number_telephone}}
+                </div>
+
+                <div class="form-group col-md-4">
+                     {{ form.cellphone_number.label }}
+                     {{ form.cellphone_number}}
+                </div>
+                <div class="form-group col-md-4">
+                   {{ form.register_date.label }}
+                   {{ form.register_date}}
+                </div>
+            </div>
+             </div>
             <button type="submit" class="btn btn-primary">Guardar</button>
      </form>
      </div>
