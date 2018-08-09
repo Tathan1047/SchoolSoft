@@ -49,3 +49,6 @@ class Payments (models.Model):
                                               ("Cheque", "Cheque")), max_length=30)
     checknumber=models.CharField(max_length=30, blank=True)
     observations=models.CharField(max_length=50,blank=True)
+
+
+

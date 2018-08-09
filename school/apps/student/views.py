@@ -1,3 +1,4 @@
+from django.contrib.messages.views import SuccessMessageMixin
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView, CreateView,ListView
@@ -18,11 +19,13 @@ class InicioTemplateView(ContextDataMixin, TemplateView):
     template_name = 'student/index.html'
 
 
-class RegisterpaymentsCreateView(ContextDataMixin, CreateView):
+class RegisterpaymentsCreateView(ContextDataMixin,SuccessMessageMixin, CreateView):
     template_name = 'student/registerpayments.html'
     model = Payments
     form_class = registerpayments
-    success_url = reverse_lazy('student:inicio')
+    success_url = reverse_lazy('student:registerpayments')
+    success_message = 'Pago del Codigo%(code_student) ha sido Registrado satisfactoriamente'
+
 
 
 class StudentListView(ContextDataMixin, ListView):

@@ -28,7 +28,7 @@ class registerpayments(forms.ModelForm):
 
         widgets = {
             'code_student': forms.Select(attrs={'class':'form-control' }),
-            'paymentsconcepts': forms.Select(attrs={'class': 'form-control', 'placeholder': 'Conceptp de Pago'}),
+            'paymentsconcepts': forms.Select(attrs={'class':'form-control', 'placeholder': 'Concepto de Pago'}),
             'valuepayments':forms.TextInput(attrs={'class':'form-control','placeholder':'Valor a Pagar'}),
             'datepayment':forms.TextInput(attrs={'class':'form-control','placeholder':'Fecha de Pago', 'type':'date'}),
             'paymentmethod': forms.Select(attrs={'class': 'form-control'}),

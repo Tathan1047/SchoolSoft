@@ -2,12 +2,52 @@
 {% block title %}Financiera | Pagos {% endblock %}
 {% block TitleForm %}Registro Pagos Financiera{% endblock %}
 {% block content %}
+
     <div class="container-fluid card-body">
         <form method="post">
             {% csrf_token %}
-            {{  form.as_p }}
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                     {{ form.code_student.label }}
+                     {{ form.code_student}}
+                </div>
+                <div class="form-group col-md-6">
+                   {{ form.paymentsconcepts.label }}
+                   {{ form.paymentsconcepts}}
+                </div>
+            </div>
+
+             <div class="form-row">
+                <div class="form-group col-md-6">
+                     {{ form.valuepayments.label }}
+                     {{ form.valuepayments}}
+                </div>
+                <div class="form-group col-md-6">
+                   {{ form.datepayment.label }}
+                   {{ form.datepayment}}
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                     {{ form.paymentmethod.label }}
+                     {{ form.paymentmethod}}
+                </div>
+                <div class="form-group col-md-6">
+                   {{ form.checknumber.label }}
+                   {{ form.checknumber}}
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                     {{ form.observations.label }}
+                     {{ form.observations}}
+                </div>
+
+            </div>
             <button type="submit" class="btn btn-primary">Guardar</button>
         </form>
-
     </div>
+
 {% endblock %}
