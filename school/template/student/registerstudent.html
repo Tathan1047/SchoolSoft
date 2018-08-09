@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}Administrativa | Registro {% endblock %}
+{% block TitleForm %}Registro Estudiantes{% endblock %}
+{% block content %}
+     <div class="container-fluid card-body">
+    {% if messages %}
+        {% for message in messages %}
+      <div class="alert alert-success alert-outline alert-dismissible fade show {{ message.tags }}" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        {{ message }}
+      </div>
+    {% endfor %}
+    {% endif %}
+
+
+    <form method="post">
+           {% csrf_token %}
+           {{  form.as_p }}
+            <button type="submit" class="btn btn-primary">Guardar</button>
+     </form>
+     </div>
+{% endblock %}

@@ -2,7 +2,7 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView, CreateView,ListView
-from apps.student.form import registerpayments
+from apps.student.form import registerpayments,registerstudent
 from apps.student.models import Payments, Student
 
 #Generador de Contadores para el Bar Dashboard
@@ -19,13 +19,19 @@ class InicioTemplateView(ContextDataMixin, TemplateView):
     template_name = 'student/index.html'
 
 
-class RegisterpaymentsCreateView(ContextDataMixin,SuccessMessageMixin, CreateView):
+class RegisterpaymentsCreateView(SuccessMessageMixin, ContextDataMixin, CreateView):
     template_name = 'student/registerpayments.html'
     model = Payments
     form_class = registerpayments
     success_url = reverse_lazy('student:registerpayments')
-    success_message = 'Pago del Codigo%(code_student) ha sido Registrado satisfactoriamente'
+    success_message = 'Pago del Codigo %(code_student)s ha sido Registrado satisfactoriamente'
 
+
+class RegisterstudentCreateView(ContextDataMixin,CreateView):
+    template_name = 'student/registerstudent.html'
+    model = Student
+    form_class = registerstudent
+    success_url = reverse_lazy('student:inicio')
 
 
 class StudentListView(ContextDataMixin, ListView):

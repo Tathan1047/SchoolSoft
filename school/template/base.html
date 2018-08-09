@@ -74,7 +74,7 @@
 						<li class="nav-dropdown active">
 							<a class="has-arrow " href="#" aria-expanded="false"><i class="icon dripicons-user-group"></i><span>Gestionar Estudiantes</span></a>
 							<ul class="collapse in nav-sub" aria-expanded="true">
-								<li><a href=""><i class="icon dripicons-plus"></i><span>&nbsp;Registrar Estudiante</span></a></li>
+								<li><a href="{% url 'student:registerstudent' %}"><i class="icon dripicons-plus"></i><span>&nbsp;Registrar Estudiante</span></a></li>
 								<li><a href="{% url 'student:liststudents' %}"><i class="icon dripicons-list"></i><span>&nbsp;Listado Estudiantes</span></a></li>
 								<li><a href="dashboard.financials.html"><i class="icon dripicons-search"></i><span>&nbsp;Buscar Estudiante</span></a></li>
 
@@ -91,7 +91,7 @@
 							</ul>
 						</li>
 
-                        <li class="sidebar-header"><span>EXTRAS</span></li>
+                        <li class="sidebar-header"><span>Extra Datos</span></li>
 						<li class="nav-dropdown">
 							<a class="has-arrow" href="#" aria-expanded="false"><i class="icon dripicons-lock"></i><span>Authentication</span></a>
 							<ul class="collapse nav-sub" aria-expanded="false">
