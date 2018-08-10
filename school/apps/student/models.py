@@ -22,7 +22,7 @@ class Paymentsconcepts (models.Model):
 
 #Modelo Estudiantes
 class Student (models.Model):
-    code_student= models.CharField(max_length=10, primary_key= True)
+    code_student= models.CharField(max_length=10, primary_key= True, unique= True)
     name_student=models.CharField(max_length=50)
     lastname_student=models.CharField(max_length=50)
     document_type = models.ForeignKey(Documenttype, on_delete=models.CASCADE)
