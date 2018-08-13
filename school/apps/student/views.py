@@ -48,7 +48,9 @@ class RegisterstudentCreateView(SuccessMessageMixin, ContextDataMixin,CreateView
             form2.instance.code_student = instance
             if form2.is_valid():
                 form2.save()
-            return HttpResponseRedirect(reverse_lazy('student:liststudents'))
+            return self.form_valid(form)
+        else:
+            return self.form_invalid(form)
 
 
 
