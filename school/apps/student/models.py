@@ -16,17 +16,19 @@ class City (models.Model):
     def __str__(self):
         return self.city
 
-#Modelo Conceptos de Pago
+#Modelo Conceptos de Pago0
 class Paymentsconcepts (models.Model):
     paymentsconcepts=models.CharField(max_length=50)
 
     def __str__(self):
         return self.paymentsconcepts
 
+def random_id(lenght=6):
+    return ''.join(random.choice(string.digits) for x in range(lenght))
 
 #Modelo Estudiantes
 class Student (models.Model):
-    code_student= models.AutoField(max_length=9, primary_key= True, unique= True)
+    code_student= models.AutoField(max_length=10, primary_key= True, unique= True, default= random_id)
     name_student=models.CharField(max_length=50)
     lastname_student=models.CharField(max_length=50)
     document_type = models.ForeignKey(Documenttype, on_delete=models.CASCADE)
@@ -38,13 +40,13 @@ class Student (models.Model):
     neighborhood=models.CharField(max_length=50)
     number_telephone=models.CharField(max_length=40)
     cellphone_number=models.CharField(max_length=40)
-    register_date=models.DateField()
+    register_date=models.DateField(auto_now_add=True, editable=False)
 
-    def code_studen_format(self):
-        return 'A'+ str(self.code_student).zfill(4)
 
     def __str__(self):
-        return (str(self.code_studen_format())+ '-' + self.name_student + ' ' +  self.lastname_student)
+        return (str(self.code_student) + '-' + self.name_student + ' ' +  self.lastname_student)
+
+
 
 #Modelo Pagos
 class Payments (models.Model):
@@ -57,5 +59,11 @@ class Payments (models.Model):
     checknumber=models.CharField(max_length=30, blank=True)
     observations=models.CharField(max_length=50,blank=True)
 
+
+class Socioeconomic (models.Model):
+    code_student=models.ForeignKey(Student, on_delete=models.CASCADE)
+    filesisben=models.CharField(max_length=10, blank=True)
+    scoresisben=models.FloatField(blank=True)
+    stratum=models.CharField(max_length=10, blank=False)
 
 

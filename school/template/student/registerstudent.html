@@ -1,9 +1,9 @@
 {% extends "base.html" %}
+{% load static %}
 {% block title %}Administrativa | Registro {% endblock %}
 {% block TitleForm %}Registro Estudiantes{% endblock %}
 {% block content %}
-   <div class="container-fluid card-body">
-   {% if messages %}
+{% if messages %}
         {% for message in messages %}
       <div class="alert alert-success alert-outline alert-dismissible fade show {{ message.tags }}" role="alert">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -13,73 +13,133 @@
       </div>
     {% endfor %}
     {% endif %}
+    <section class="page-content container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <form method="POST" class="wizard clearfix" id="horizontal-wizard" action=""
+                              role="application" class="wizard clearfix" novalidate="novalidate" >
+>
+                            {% csrf_token %}
+                                <h3>Datos Generales</h3>
+                                <section>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            {{ form.name_student.label }}
+                                            {{ form.name_student }}
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            {{ form.lastname_student.label }}
+                                            {{ form.lastname_student }}
+                                        </div>
+                                    </div>
 
-    <form method="post">
-           {% csrf_token %}
-           <div class="form-row">
-                <div class="form-group col-md-6">
-                     {{ form.name_student.label }}
-                     {{ form.name_student}}
-                </div>
-                <div class="form-group col-md-6">
-                   {{ form.lastname_student.label }}
-                   {{ form.lastname_student}}
+                                    <div class="form-row">
+                                        <div class="form-group col-md-3">
+                                            {{ form.document_type.label }}
+                                            {{ form.document_type }}
+                                        </div>
+                                        <div class="form-group col-md-3">
+                                            {{ form.number_document.label }}
+                                            {{ form.number_document }}
+                                        </div>
+                                        <div class="form-group col-md-3">
+                                            {{ form.gender.label }}
+                                            {{ form.gender }}
+                                        </div>
+                                        <div class="form-group col-md-3">
+                                            {{ form.birthday.label }}
+                                            {{ form.birthday }}
+                                        </div>
+                                    </div>
+
+                                    <div class="form-row">
+                                        <div class="form-group col-md-4">
+                                            {{ form.city.label }}
+                                            {{ form.city }}
+                                        </div>
+
+                                        <div class="form-group col-md-4">
+                                            {{ form.address.label }}
+                                            {{ form.address }}
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            {{ form.neighborhood.label }}
+                                            {{ form.neighborhood }}
+                                        </div>
+                                    </div>
+
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            {{ form.number_telephone.label }}
+                                            {{ form.number_telephone }}
+                                        </div>
+
+                                        <div class="form-group col-md-6">
+                                            {{ form.cellphone_number.label }}
+                                            {{ form.cellphone_number }}
+                                        </div>
+
+                                    </div>
+
+
+                                </section>
+                                <h3>Datos Socioeconomicos</h3>
+                                <section>
+
+                                     <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            {{ forms2.filesisben.label }}
+                                            {{ forms2.filesisben }}
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            {{ forms2.scoresisben.label }}
+                                            {{ forms2.scoresisben }}
+                                        </div>
+
+                                         <div class="form-group col-md-6">
+                                            {{ forms2.stratum.label }}
+                                            {{ forms2.stratum }}
+                                        </div>
+
+                                    </div>
+
+
+                                </section>
+                                <h3>Datos Salud</h3>
+                                <section>
+                                </section>
+                                <h3>Acudiente</h3>
+                                <section>
+                                </section>
+                        </form>
+                    </div>
                 </div>
             </div>
+        </div>
+    </section>
 
-             <div class="form-row">
-                <div class="form-group col-md-3">
-                     {{ form.document_type.label }}
-                     {{ form.document_type}}
-                </div>
-                <div class="form-group col-md-3">
-                   {{ form.number_document.label }}
-                   {{ form.number_document}}
-                </div>
-                 <div class="form-group col-md-3">
-                   {{ form.gender.label }}
-                   {{ form.gender}}
-                </div>
-                 <div class="form-group col-md-3">
-                   {{ form.birthday.label }}
-                   {{ form.birthday}}
-                </div>
-            </div>
+{% endblock %}
+{% block extrasscripts %}
+    <script src="{% static '/assets/vendor/modernizr/modernizr.custom.js' %}"></script>
+    <script src="{% static '/assets/vendor/jquery/dist/jquery.min.js' %}"></script>
+    <script src="{% static '/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static '/assets/vendor/js-storage/js.storage.js' %}"></script>
+    <script src="{% static '/assets/vendor/js-cookie/src/js.cookie.js' %}"></script>
+    <script src="{% static '/assets/vendor/pace/pace.js' %}"></script>
+    <script src="{% static '/assets/vendor/metismenu/dist/metisMenu.js' %}"></script>
+    <script src="{% static '/assets/vendor/switchery-npm/index.js' %}"></script>
+    <script src="{% static '/assets/vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js' %}"></script>
+    <!-- ================== PAGE LEVEL VENDOR SCRIPTS ==================-->
+    <script src="{% static '/assets/vendor/jquery-validation/jquery.validate.min.js' %}"></script>
+    <script src="{% static '/assets/vendor/jquery-validation/additional-methods.min.js' %}"></script>
+    <script src="{% static '/assets/vendor/jquery-steps/jquery.steps.min.js' %}"></script>
+    <script src="{% static '/assets/vendor/sweetalert2/dist/sweetalert2.min.js' %}"></script>
+    <!-- ================== GLOBAL APP SCRIPTS ==================-->
+    <script src="{% static '/assets/js/global/app.js' %}"></script>
+    <!-- ================== PAGE LEVEL APP SCRIPTS ==================-->
+    <script src="{% static '/assets/js/components/horizontal-wizard-init.js' %}"></script>
 
-             <div class="form-row">
-                <div class="form-group col-md-4">
-                     {{ form.city.label }}
-                     {{ form.city}}
-                </div>
-
-                <div class="form-group col-md-4">
-                     {{ form.address.label }}
-                     {{ form.address}}
-                </div>
-                <div class="form-group col-md-4">
-                   {{ form.neighborhood.label }}
-                   {{ form.neighborhood}}
-                </div>
-             </div>
-
-                 <div class="form-row">
-                <div class="form-group col-md-4">
-                     {{ form.number_telephone.label }}
-                     {{ form.number_telephone}}
-                </div>
-
-                <div class="form-group col-md-4">
-                     {{ form.cellphone_number.label }}
-                     {{ form.cellphone_number}}
-                </div>
-                <div class="form-group col-md-4">
-                   {{ form.register_date.label }}
-                   {{ form.register_date}}
-                </div>
-            </div>
-
-            <button type="submit" class="btn btn-primary">Guardar</button>
-     </form>
-     </div>
 
 {% endblock %}

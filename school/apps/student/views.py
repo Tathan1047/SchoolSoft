@@ -4,9 +4,9 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib import messages
 from django.shortcuts import render
 from django.urls import reverse_lazy
-from django.views.generic import TemplateView, CreateView,ListView
-from apps.student.form import registerpayments,registerstudent
-from apps.student.models import Payments, Student
+from django.views.generic import TemplateView, CreateView,ListView,UpdateView
+from apps.student.form import registerpayments,registerstudent,registersocioeconomic
+from apps.student.models import Payments, Student, Socioeconomic
 
 #Generador de Contadores para el Bar Dashboard
 class ContextDataMixin(object):
@@ -23,6 +23,37 @@ class InicioTemplateView(ContextDataMixin, TemplateView):
     template_name = 'student/index.html'
 
 
+class RegisterstudentCreateView(SuccessMessageMixin, ContextDataMixin,CreateView):
+    template_name = 'student/registerstudent.html'
+    model = Student
+    form_class = registerstudent
+    success_url = reverse_lazy('student:registerstudent')
+    success_message = 'Estudiante %(name_student)s ha sido Registrado satisfactoriamente'
+
+    def get_context_data(self, **kwargs):
+        kwargs.update(
+            {'forms2': registersocioeconomic}
+        )
+        return super(RegisterstudentCreateView, self).get_context_data(**kwargs)
+
+
+class StudentListView(ContextDataMixin, ListView):
+   template_name = 'student/list_students.html'
+   context_object_name = 'students'
+   model = Student
+
+class SocioeconomicCreateView(CreateView):
+    template_name = 'student/registerstudent.html'
+    model = Socioeconomic
+    form_class = registersocioeconomic
+
+class UpdatestudentUpdateView(UpdateView):
+    model = Student
+    template_name = 'student/registerstudent.html'
+    form_class = registerstudent
+    success_url = reverse_lazy('student:liststudents')
+
+
 class RegisterpaymentsCreateView(SuccessMessageMixin, ContextDataMixin, CreateView):
     template_name = 'finance/registerpayments.html'
     model = Payments
@@ -31,21 +62,9 @@ class RegisterpaymentsCreateView(SuccessMessageMixin, ContextDataMixin, CreateVi
     success_message = 'Pago del Codigo %(code_student)s ha sido Registrado satisfactoriamente'
 
 
-class RegisterstudentCreateView(SuccessMessageMixin, ContextDataMixin,CreateView):
-    template_name = 'student/registerstudent.html'
-    model = Student
-    form_class = registerstudent
-    success_url = reverse_lazy('student:registerstudent')
-    success_message = 'Estudiante %(name_student)s ha sido Registrado satisfactoriamente'
-
-
-class StudentListView(ContextDataMixin, ListView):
-   template_name = 'student/list_students.html'
-   context_object_name = 'students'
-   model = Student
-
 class ListpaymentsView(ContextDataMixin, ListView):
     template_name = 'finance/list_general_payments.html'
     context_object_name = 'payments'
     model = Payments
+
 

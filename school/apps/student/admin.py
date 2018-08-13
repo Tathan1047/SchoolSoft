@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from apps.student.models import Student, Documenttype, City, Paymentsconcepts, Payments
+from apps.student.models import Student, Documenttype, City, Paymentsconcepts, Payments, Socioeconomic
 
 
 class AdminStudent(admin.ModelAdmin):
@@ -24,9 +24,13 @@ class AdminPayments(admin.ModelAdmin):
     list_display = ['code_student', 'paymentsconcepts', 'valuepayments', 'datepayment',
                     'paymentmethod','checknumber', 'observations']
 
+class AdminSocioeconomic(admin.ModelAdmin):
+    list_display = ['code_student','filesisben','scoresisben','stratum']
+
 
 admin.site.register(Student, AdminStudent)
 admin.site.register(Documenttype, AdminDocumenttype)
 admin.site.register(City, AdminCity)
 admin.site.register(Payments, AdminPayments)
 admin.site.register(Paymentsconcepts, AdminPaymentsconcepts)
+admin.site.register(Socioeconomic, AdminSocioeconomic)

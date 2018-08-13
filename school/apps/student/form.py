@@ -1,5 +1,5 @@
 from django import forms
-from apps.student.models import Payments, Student
+from apps.student.models import Payments, Student, Socioeconomic
 
 
 class registerpayments(forms.ModelForm):
@@ -43,7 +43,7 @@ class registerstudent(forms.ModelForm):
 
         fields=['code_student', 'name_student', 'lastname_student','document_type',
                 'number_document','gender', 'birthday','city','address','neighborhood',
-                'number_telephone','cellphone_number','register_date']
+                'number_telephone','cellphone_number']
 
         labels={'code_student':'Codigo Estudiante',
                 'name_student':' Nombre Estudiante',
@@ -56,8 +56,8 @@ class registerstudent(forms.ModelForm):
                 'address':' Direccion',
                 'neighborhood':' Barrio',
                 'number_telephone':' Telefono Fijo',
-                'cellphone_number':' Telefono Celular',
-                'register_date':' Fecha de Registro'
+                'cellphone_number':' Telefono Celular'
+
                 }
 
         widgets={'code_student': forms.TextInput(attrs={'class':'form-control' }),
@@ -71,7 +71,17 @@ class registerstudent(forms.ModelForm):
                  'address': forms.TextInput(attrs={'class':'form-control' }),
                  'neighborhood': forms.TextInput(attrs={'class':'form-control' }),
                  'number_telephone': forms.TextInput(attrs={'class':'form-control' }),
-                 'cellphone_number': forms.TextInput(attrs={'class':'form-control' }),
-                 'register_date': forms.TextInput(attrs={'class':'form-control','type':'date' })
+                 'cellphone_number': forms.TextInput(attrs={'class':'form-control' })
 
                  }
+
+class registersocioeconomic(forms.ModelForm):
+    class Meta:
+        model = Socioeconomic
+
+        fields=['code_student','filesisben','scoresisben','stratum']
+        labels={'code_student':'Codigo Estudiante','filesisben':'Ficha Sisben','scoresisben':'Puntaje Sisben','stratum':'Estrato'}
+        widgets={'code_student': forms.TextInput(attrs={'class':'form-control'}),
+                 'filesisben': forms.TextInput(attrs={'class':'form-control'}),
+                 'scoresisben': forms.TextInput(attrs={'class':'form-control', 'type':'number'}),
+                 'stratum':forms.TextInput(attrs={'class':'form-control', 'type':'number'})}
