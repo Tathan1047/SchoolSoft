@@ -6,7 +6,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>{% block title %}School Soft | Dashboard{% endblock %}</title>
+	<title>{% block title %}SchoolSoft | Dashboard{% endblock %}</title>
 
 
 	<!-- ================== GOOGLE FONTS ==================-->
@@ -85,8 +85,8 @@
 						<li class="nav-dropdown">
 							<a class="has-arrow" href="#" aria-expanded="false"><i class="icon dripicons-document"></i><span>Gestión Financiera</span></a>
 							<ul class="collapse nav-sub" aria-expanded="false">
-								<li><a href="{% url 'student:registerpayments' %}"><i class="icon dripicons-plus"></i><span>&nbsp;Registrar Ingresos</span></a></li>
-								<li><a href="auth.register.html"><span>Register</span></a></li>
+								<li><a href="{% url 'finance:registerpayments' %}"><i class="icon dripicons-plus"></i><span>&nbsp;Registrar Ingresos</span></a></li>
+								<li><a href="{% url 'finance:listpayments' %}"><i class="icon dripicons-list"></i><span> Listado General Ingresos</span></a></li>
 								<li><a href="auth.forgot-password.html"><span>Forgot Password</span></a></li>
 							</ul>
 						</li>
@@ -240,7 +240,7 @@
 											<div class="icon-rounded icon-rounded-success float-left m-r-20">
 												<i class="la la-dollar f-w-600"></i>
 											</div>
-											<h5 class="card-title m-b-5 prepend-currency counter" data-count="37873">0</h5>
+											<h5 class="card-title m-b-5 prepend-currency counter" data-count="{{ sum_income }}">0</h5>
 											<h6 class="text-muted m-t-10">
 												Ingresos Totales
 											</h6>
@@ -297,7 +297,7 @@
 <script src="{% static '/assets/js/cards/counter-group.js'%}"></script>
 <script src="{% static '/assets/js/cards/recent-transactions.js'%}"></script>
 <script src="{% static '/assets/js/cards/monthly-budget.js'%}"></script>
-<script src="{% static 'assets/js/cards/users-chart.js'%}"></script>
+<script src="{% static '/assets/js/cards/users-chart.js'%}"></script>
 <script src="{% static '/assets/js/cards/bounce-rate-chart.js'%}"></script>
 <script src="{% static '/assets/js/cards/session-duration-chart.js'%}"></script>
 
@@ -311,9 +311,11 @@
 <script src="{% static '/assets/vendor/flot.curvedlines/curvedLines.js'%}"></script>
 <script src="{% static '/assets/vendor/datatables.net/js/jquery.dataTables.js'%}"></script>
 <script src="{% static '/assets/vendor/datatables.net-bs4/js/dataTables.bootstrap4.js'%}"></script>
-
-<script src="{% static '/assets/js/global/app.js' %}"></script>
 <script src="{% static '/assets/js/components/datatables-init.js' %}"></script>
+<script src="{% static '/assets/js/components/horizontal-wizard-init.js'%}"></script>
+<script src="{% static '/assets/vendor/jquery-validation/jquery.validate.min.js'%}"></script>
+
+
 <script> (function(i, s, o, g, r, a, m) {
 i['GoogleAnalyticsObject'] = r;
 i[r] = i[r] || function() {

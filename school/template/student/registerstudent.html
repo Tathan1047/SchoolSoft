@@ -3,21 +3,25 @@
 {% block TitleForm %}Registro Estudiantes{% endblock %}
 {% block content %}
    <div class="container-fluid card-body">
+   {% if messages %}
+        {% for message in messages %}
+      <div class="alert alert-success alert-outline alert-dismissible fade show {{ message.tags }}" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        {{ message }}
+      </div>
+    {% endfor %}
+    {% endif %}
 
     <form method="post">
            {% csrf_token %}
            <div class="form-row">
-                <div class="form-group col-md-4">
-                     {{ form.code_student.label }}
-                     {{ form.code_student}}
-                    {{ form.code_student.errors }}
-                </div>
-
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-6">
                      {{ form.name_student.label }}
                      {{ form.name_student}}
                 </div>
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-6">
                    {{ form.lastname_student.label }}
                    {{ form.lastname_student}}
                 </div>
@@ -73,8 +77,9 @@
                    {{ form.register_date}}
                 </div>
             </div>
-             </div>
+
             <button type="submit" class="btn btn-primary">Guardar</button>
      </form>
      </div>
+
 {% endblock %}

@@ -12,7 +12,8 @@ from apps.student.models import Payments, Student
 class ContextDataMixin(object):
     def get_context_data(self, **kwargs):
         kwargs.update(
-            {'total_students': Student.objects.count()}
+            {'total_students': Student.objects.count(),
+            'sum_income':Payments.objects.count()}
 
         )
         return super().get_context_data(**kwargs)
@@ -23,7 +24,7 @@ class InicioTemplateView(ContextDataMixin, TemplateView):
 
 
 class RegisterpaymentsCreateView(SuccessMessageMixin, ContextDataMixin, CreateView):
-    template_name = 'student/registerpayments.html'
+    template_name = 'finance/registerpayments.html'
     model = Payments
     form_class = registerpayments
     success_url = reverse_lazy('student:registerpayments')
@@ -42,4 +43,9 @@ class StudentListView(ContextDataMixin, ListView):
    template_name = 'student/list_students.html'
    context_object_name = 'students'
    model = Student
+
+class ListpaymentsView(ContextDataMixin, ListView):
+    template_name = 'finance/list_general_payments.html'
+    context_object_name = 'payments'
+    model = Payments
 

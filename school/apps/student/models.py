@@ -1,3 +1,6 @@
+import random
+import string
+
 from django.db import models
 
 #Modelo tipo de documentos
@@ -20,9 +23,10 @@ class Paymentsconcepts (models.Model):
     def __str__(self):
         return self.paymentsconcepts
 
+
 #Modelo Estudiantes
 class Student (models.Model):
-    code_student= models.CharField(max_length=10, primary_key= True, unique= True)
+    code_student= models.AutoField(max_length=9, primary_key= True, unique= True)
     name_student=models.CharField(max_length=50)
     lastname_student=models.CharField(max_length=50)
     document_type = models.ForeignKey(Documenttype, on_delete=models.CASCADE)
@@ -36,8 +40,11 @@ class Student (models.Model):
     cellphone_number=models.CharField(max_length=40)
     register_date=models.DateField()
 
+    def code_studen_format(self):
+        return 'A'+ str(self.code_student).zfill(4)
+
     def __str__(self):
-        return (self.code_student+ '-' + self.name_student + ' ' +  self.lastname_student)
+        return (str(self.code_studen_format())+ '-' + self.name_student + ' ' +  self.lastname_student)
 
 #Modelo Pagos
 class Payments (models.Model):
