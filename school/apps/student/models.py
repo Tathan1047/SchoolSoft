@@ -44,7 +44,7 @@ class Student (models.Model):
 
 
     def __str__(self):
-        return (str(self.code_student) + '-' + self.name_student + ' ' +  self.lastname_student)
+        return str(self.code_student)
 
 
 
@@ -61,7 +61,7 @@ class Payments (models.Model):
 
 
 class Socioeconomic (models.Model):
-    code_student=models.ForeignKey(Student, on_delete=models.CASCADE)
+    code_student=models.ForeignKey(Student, blank=True, on_delete=models.CASCADE)
     filesisben=models.CharField(max_length=10, blank=True)
     scoresisben=models.FloatField(blank=True)
     stratum=models.CharField(max_length=10, blank=False)

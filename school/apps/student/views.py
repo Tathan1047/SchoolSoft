@@ -2,6 +2,7 @@ from statistics import mean
 
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib import messages
+from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView, CreateView,ListView,UpdateView
@@ -24,17 +25,31 @@ class InicioTemplateView(ContextDataMixin, TemplateView):
 
 
 class RegisterstudentCreateView(SuccessMessageMixin, ContextDataMixin,CreateView):
-    template_name = 'student/registerstudent.html'
     model = Student
+    template_name = 'student/registerstudent.html'
     form_class = registerstudent
-    success_url = reverse_lazy('student:registerstudent')
+    second_form_class = registersocioeconomic
     success_message = 'Estudiante %(name_student)s ha sido Registrado satisfactoriamente'
 
     def get_context_data(self, **kwargs):
-        kwargs.update(
-            {'forms2': registersocioeconomic}
-        )
-        return super(RegisterstudentCreateView, self).get_context_data(**kwargs)
+        context = super(RegisterstudentCreateView, self).get_context_data(**kwargs)
+        if 'form' not in context:
+            context['form'] = self.form_class(self.request.GET)
+        if 'form2' not in context:
+            context['form2'] = self.second_form_class(self.request.GET)
+        return context
+
+    def post (self, request, *args, **kwargs):
+        self.object = self.get_object
+        form = self.form_class(request.POST)
+        form2 = self.second_form_class(request.POST)
+        if form.is_valid():
+            instance = form.save()
+            form2.instance.code_student = instance
+            if form2.is_valid():
+                form2.save()
+            return HttpResponseRedirect(reverse_lazy('student:liststudents'))
+
 
 
 class StudentListView(ContextDataMixin, ListView):
