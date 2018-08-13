@@ -29,6 +29,7 @@ class RegisterstudentCreateView(SuccessMessageMixin, ContextDataMixin,CreateView
     template_name = 'student/registerstudent.html'
     form_class = registerstudent
     second_form_class = registersocioeconomic
+    success_url = reverse_lazy('student:registerstudent')
     success_message = 'Estudiante %(name_student)s ha sido Registrado satisfactoriamente'
 
     def get_context_data(self, **kwargs):
