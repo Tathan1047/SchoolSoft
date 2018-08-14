@@ -79,9 +79,8 @@ class registersocioeconomic(forms.ModelForm):
     class Meta:
         model = Socioeconomic
 
-        fields=['code_student','filesisben','scoresisben','stratum']
-        labels={'code_student':'Codigo Estudiante','filesisben':'Ficha Sisben','scoresisben':'Puntaje Sisben','stratum':'Estrato'}
-        widgets={'code_student': forms.TextInput(attrs={'class':'form-control'}),
-                 'filesisben': forms.TextInput(attrs={'class':'form-control'}),
+        fields=['filesisben','scoresisben','stratum']
+        labels={'filesisben':'Ficha Sisben','scoresisben':'Puntaje Sisben','stratum':'Estrato'}
+        widgets={'filesisben': forms.TextInput(attrs={'class':'form-control'}),
                  'scoresisben': forms.TextInput(attrs={'class':'form-control', 'type':'number'}),
                  'stratum':forms.TextInput(attrs={'class':'form-control', 'type':'number'})}
