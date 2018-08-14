@@ -85,7 +85,23 @@ class UpdatestudentUpdateView(UpdateView):
     model = Student
     template_name = 'student/registerstudent.html'
     form_class = registerstudent
+    second_form_class = registersocioeconomic
+    three_form_class = registerhealth
+    four_form_class = registerattendant
     success_url = reverse_lazy('student:liststudents')
+
+    def get_context_data(self, **kwargs):
+        context = super(UpdatestudentUpdateView, self).get_context_data(**kwargs)
+        code = self.get_object()
+        
+        if 'form2' not in context:
+            context['form2'] = self.second_form_class(initial={'filesisben':'1234'})
+        if 'form3' not in context:
+            context['form3'] = self.three_form_class(self.request.GET)
+        if 'form4' not in context:
+            context['form4'] = self.four_form_class(self.request.GET)
+        return context
+
 
 
 class RegisterpaymentsCreateView(SuccessMessageMixin, ContextDataMixin, CreateView):
