@@ -80,44 +80,88 @@
                                             {{ form.cellphone_number.label }}
                                             {{ form.cellphone_number }}
                                         </div>
-
                                     </div>
-
-
                                 </section>
+
                                 <h3>Datos Socioeconomicos</h3>
                                 <section>
-
                                      <div class="form-row">
-                                        <div class="form-group col-md-6">
-
-                                        </div>
-                                        <div class="form-group col-md-6">
-                                            <div class="form-group col-md-6">
+                                        <div class="form-group col-md-4">
                                             {{ form2.filesisben.label }}
                                             {{ form2.filesisben }}
                                         </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-row">
-                                        <div class="form-group col-md-6">
+                                         <div class="form-group col-md-4">
                                             {{ form2.scoresisben.label }}
                                             {{ form2.scoresisben }}
                                         </div>
-                                         <div class="form-group col-md-6">
+                                         <div class="form-group col-md-4">
                                             {{ form2.stratum.label }}
                                             {{ form2.stratum }}
                                         </div>
-
-                                    </div>
-
+                                     </div>
 
                                 </section>
                                 <h3>Datos Salud</h3>
                                 <section>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-4">
+                                            {{ form3.eps_affiliate.label }}
+                                            {{ form3.eps_affiliate }}
+                                        </div>
+                                         <div class="form-group col-md-4">
+                                            {{ form3.ips_assigned.label }}
+                                            {{ form3.ips_assigned }}
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                           {{ form3.blood_type.label }}
+                                           {{ form3.blood_type }}
+                                        </div>
+                                    </div>
                                 </section>
                                 <h3>Acudiente</h3>
                                 <section>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-12">
+                                            {{ form4.indetify_attendant.label }}
+                                            {{ form4.indetify_attendant }}
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            {{ form4.name_attendat.label }}
+                                            {{ form4.name_attendat }}
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            {{ form4.lastname_attendat.label }}
+                                            {{ form4.lastname_attendat }}
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            {{ form4.email.label }}
+                                            {{ form4.email }}
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            {{ form4.address_attendant.label }}
+                                            {{ form4.address_attendant }}
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            {{ form4.relationship.label }}
+                                            {{ form4.relationship }}
+                                        </div>
+                                         <div class="form-group col-md-6">
+                                            {{ form4.number_telephone.label }}
+                                            {{ form4.number_telephone }}
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            {{ form4.number_cellphone.label }}
+                                            {{ form4.number_cellphone }}
+                                        </div>
+                                    </div>
                                 </section>
                         </form>
                     </div>
@@ -147,5 +191,8 @@
     <!-- ================== PAGE LEVEL APP SCRIPTS ==================-->
     <script src="{% static '/assets/js/components/horizontal-wizard-init.js' %}"></script>
 
+    <script>$(".alert").fadeTo(3000, 600).slideUp(600, function(){
+    $(".alert").slideUp(600);
+    });</script>
 
 {% endblock %}

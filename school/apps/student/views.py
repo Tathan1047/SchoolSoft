@@ -6,7 +6,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView, CreateView,ListView,UpdateView
-from apps.student.form import registerpayments,registerstudent,registersocioeconomic
+from apps.student.form import registerpayments,registerstudent,registersocioeconomic,registerhealth, registerattendant
 from apps.student.models import Payments, Student, Socioeconomic
 
 #Generador de Contadores para el Bar Dashboard
@@ -23,12 +23,14 @@ class ContextDataMixin(object):
 class InicioTemplateView(ContextDataMixin, TemplateView):
     template_name = 'student/index.html'
 
-
+#Inserciones Multiples en los Modelos Relacionados con Estudiantes ----------------------------------------------------
 class RegisterstudentCreateView(SuccessMessageMixin, ContextDataMixin,CreateView):
     model = Student
     template_name = 'student/registerstudent.html'
     form_class = registerstudent
     second_form_class = registersocioeconomic
+    three_form_class = registerhealth
+    four_form_class = registerattendant
     success_url = reverse_lazy('student:registerstudent')
     success_message = 'Estudiante %(name_student)s ha sido Registrado satisfactoriamente'
 
@@ -38,22 +40,36 @@ class RegisterstudentCreateView(SuccessMessageMixin, ContextDataMixin,CreateView
             context['form'] = self.form_class(self.request.GET)
         if 'form2' not in context:
             context['form2'] = self.second_form_class(self.request.GET)
+        if 'form3' not in context:
+            context['form3'] = self.three_form_class(self.request.GET)
+        if 'form4' not in context:
+            context['form4'] = self.four_form_class(self.request.GET)
+
         return context
 
     def post (self, request, *args, **kwargs):
         self.object = self.get_object
         form = self.form_class(request.POST)
         form2 = self.second_form_class(request.POST)
+        form3 = self.three_form_class(request.POST)
+        form4 = self.four_form_class(request.POST)
         if form.is_valid():
             instance = form.save()
             form2.instance.code_student = instance
+            form3.instance.code_student = instance
+            form4.instance.code_student = instance
             if form2.is_valid():
                 form2.save()
+                if form3.is_valid():
+                    form3.save()
+                    if form4.is_valid():
+                        form4.save()
             return self.form_valid(form)
         else:
             return self.form_invalid(form)
 
 
+#Fin Inserciones Multiples a Modelos Estudiantes ----------------------------------------------------------------------
 
 class StudentListView(ContextDataMixin, ListView):
    template_name = 'student/list_students.html'

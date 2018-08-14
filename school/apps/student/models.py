@@ -23,6 +23,12 @@ class Paymentsconcepts (models.Model):
     def __str__(self):
         return self.paymentsconcepts
 
+class Eps (models.Model):
+    name_eps=models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.name_eps
+
 def random_id(lenght=6):
     return ''.join(random.choice(string.digits) for x in range(lenght))
 
@@ -64,6 +70,40 @@ class Socioeconomic (models.Model):
     code_student=models.ForeignKey(Student, blank=True, on_delete=models.CASCADE)
     filesisben=models.CharField(max_length=10, blank=True)
     scoresisben=models.FloatField(blank=True)
-    stratum=models.CharField(max_length=10, blank=False)
+    stratum=models.CharField(choices=(("0", "0"),
+                                         ("1", "1"),
+                                         ("2", "2"),
+                                         ("3", "3"),
+                                         ("4", "4"),
+                                         ("5", "5"),
+                                         ("6", "6"),
+                                         ("7", "7"),),max_length=2)
+class Health (models.Model):
+    code_student=models.ForeignKey(Student, blank=True, on_delete=models.CASCADE)
+    eps_affiliate=models.ForeignKey(Eps, blank=True, on_delete=models.CASCADE)
+    ips_assigned=models.CharField(max_length=50, blank=True)
+    blood_type=models.CharField(choices=(("O+", "O+"),
+                                         ("O-", "O-"),
+                                         ("A+", "A+"),
+                                         ("A-", "A-"),
+                                         ("B+", "B+"),
+                                         ("B-", "B-"),
+                                         ("AB-", "AB-"),
+                                         ("AB+", "AB+"),),max_length=5)
+
+class Attendant (models.Model):
+    code_student=models.ForeignKey(Student, blank=False, on_delete=models.CASCADE)
+    indetify_attendant=models.CharField(max_length=20, blank=False)
+    name_attendat=models.CharField(max_length=30, blank=False)
+    lastname_attendat=models.CharField(max_length=30, blank=False)
+    email=models.CharField(max_length=50, blank=False)
+    address_attendant=models.CharField(max_length=60)
+    relationship = models.CharField(choices=(("Madre", "Madre"),
+                                           ("Padre", "Padre"),
+                                           ("Abuelo(a)", "Abuelo(a)"),
+                                           ("Tio(a)", "Tio(a)"),
+                                           ("Hermano(a)", "Hermano(a)")), max_length=20)
+    number_telephone=models.CharField(max_length=40, blank=True)
+    number_cellphone=models.CharField(max_length=15, blank= False)
 
 

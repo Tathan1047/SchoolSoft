@@ -1,5 +1,5 @@
 from django import forms
-from apps.student.models import Payments, Student, Socioeconomic
+from apps.student.models import Payments, Student, Socioeconomic, Health, Attendant
 
 
 class registerpayments(forms.ModelForm):
@@ -83,4 +83,40 @@ class registersocioeconomic(forms.ModelForm):
         labels={'filesisben':'Ficha Sisben','scoresisben':'Puntaje Sisben','stratum':'Estrato'}
         widgets={'filesisben': forms.TextInput(attrs={'class':'form-control'}),
                  'scoresisben': forms.TextInput(attrs={'class':'form-control', 'type':'number'}),
-                 'stratum':forms.TextInput(attrs={'class':'form-control', 'type':'number'})}
+                 'stratum':forms.Select(attrs={'class':'form-control'})}
+
+
+class registerhealth(forms.ModelForm):
+    class Meta:
+        model = Health
+        fields=['eps_affiliate', 'ips_assigned', 'blood_type']
+        labels={'eps_affiliate':'Eps Afiliado', 'ips_assigned':'IPS Asignada', 'blood_type':'Tipo de Sangre'}
+        widgets={'eps_affiliate':forms.Select(attrs={'class':'form-control'}),
+                 'ips_assigned':forms.TextInput(attrs={'class':'form-comtrol'}),
+                 'blood_type':forms.Select(attrs={'class':'form-control'})}
+
+
+class registerattendant(forms.ModelForm):
+    class Meta:
+        model = Attendant
+        fields=['indetify_attendant', 'name_attendat', 'lastname_attendat','email', 'address_attendant', 'relationship',
+                'number_telephone','number_cellphone']
+
+        labels={'indetify_attendant':'Identificación Acudiente',
+                'name_attendat':'Nombres Acudiente',
+                'lastname_attendat':'Apellidos Acudiente',
+                'email':'Correo Electronico',
+                'address_attendant':'Direccion Acudiente',
+                'relationship':'Parentesco',
+                'number_telephone':'Telefono Fijo',
+                'number_cellphone':'Celular'}
+
+        widgets={'indetify_attendant':forms.TextInput(attrs={'class':'form-control'}),
+                 'name_attendat':forms.TextInput(attrs={'class':'form-control'}),
+                 'lastname_attendat':forms.TextInput(attrs={'class':'form-control'}),
+                 'email':forms.TextInput(attrs={'class':'form-control'}),
+                 'address_attendant':forms.TextInput(attrs={'class':'form-control'}),
+                 'relationship':forms.TextInput(attrs={'class':'form-control'}),
+                 'number_telephone':forms.TextInput(attrs={'class':'form-control'}),
+                 'number_cellphone':forms.TextInput(attrs={'class':'form-control'})}
+
