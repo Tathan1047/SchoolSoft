@@ -37,7 +37,7 @@ class registerpayments(forms.ModelForm):
         }
 
 
-class registerstudent(forms.ModelForm):
+class registerstudentForm(forms.ModelForm):
     class Meta:
         model = Student
 
@@ -75,7 +75,7 @@ class registerstudent(forms.ModelForm):
 
                  }
 
-class registersocioeconomic(forms.ModelForm):
+class registersocioeconomicForm(forms.ModelForm):
     class Meta:
         model = Socioeconomic
 
@@ -86,7 +86,7 @@ class registersocioeconomic(forms.ModelForm):
                  'stratum':forms.Select(attrs={'class':'form-control'})}
 
 
-class registerhealth(forms.ModelForm):
+class registerhealthForm(forms.ModelForm):
     class Meta:
         model = Health
         fields=['eps_affiliate', 'ips_assigned', 'blood_type']
@@ -96,7 +96,7 @@ class registerhealth(forms.ModelForm):
                  'blood_type':forms.Select(attrs={'class':'form-control'})}
 
 
-class registerattendant(forms.ModelForm):
+class registerattendantForm(forms.ModelForm):
     class Meta:
         model = Attendant
         fields=['indetify_attendant', 'name_attendat', 'lastname_attendat','email', 'address_attendant', 'relationship',

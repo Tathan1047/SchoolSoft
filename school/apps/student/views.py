@@ -6,8 +6,8 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView, CreateView,ListView,UpdateView
-from apps.student.form import registerpayments,registerstudent,registersocioeconomic,registerhealth, registerattendant
-from apps.student.models import Payments, Student, Socioeconomic
+from apps.student.form import registerpayments,registerstudentForm,registersocioeconomicForm,registerhealthForm, registerattendantForm
+from apps.student.models import Payments, Student, Socioeconomic, Health, Attendant
 
 #Generador de Contadores para el Bar Dashboard
 class ContextDataMixin(object):
@@ -27,10 +27,10 @@ class InicioTemplateView(ContextDataMixin, TemplateView):
 class RegisterstudentCreateView(SuccessMessageMixin, ContextDataMixin,CreateView):
     model = Student
     template_name = 'student/registerstudent.html'
-    form_class = registerstudent
-    second_form_class = registersocioeconomic
-    three_form_class = registerhealth
-    four_form_class = registerattendant
+    form_class = registerstudentForm
+    second_form_class = registersocioeconomicForm
+    three_form_class = registerhealthForm
+    four_form_class = registerattendantForm
     success_url = reverse_lazy('student:registerstudent')
     success_message = 'Estudiante %(name_student)s ha sido Registrado satisfactoriamente'
 
@@ -79,29 +79,60 @@ class StudentListView(ContextDataMixin, ListView):
 class SocioeconomicCreateView(CreateView):
     template_name = 'student/registerstudent.html'
     model = Socioeconomic
-    form_class = registersocioeconomic
+    form_class = registersocioeconomicForm
 
+#Inicio Actualizaciones Multiples a Modelos Estudiantes ----------------------------------------------------------------------
 class UpdatestudentUpdateView(UpdateView):
     model = Student
+    second_model = Socioeconomic
+    three_model = Health
+    four_model = Attendant
     template_name = 'student/registerstudent.html'
-    form_class = registerstudent
-    second_form_class = registersocioeconomic
-    three_form_class = registerhealth
-    four_form_class = registerattendant
+    form_class = registerstudentForm
+    second_form_class = registersocioeconomicForm
+    three_form_class = registerhealthForm
+    four_form_class = registerattendantForm
     success_url = reverse_lazy('student:liststudents')
 
     def get_context_data(self, **kwargs):
         context = super(UpdatestudentUpdateView, self).get_context_data(**kwargs)
-        code = self.get_object()
-        
+        pk = self.kwargs.get('pk', 0)
+        student = self.model.objects.get(code_student=pk)
+        socioeconomic = self.second_model.objects.get(code_student=student.code_student)
+        health = self.three_model.objects.get(code_student=student.code_student)
+        attendant = self.four_model.objects.get(code_student=student.code_student)
+        if 'form' not in context:
+            context['form'] = self.form_class()
         if 'form2' not in context:
-            context['form2'] = self.second_form_class(initial={'filesisben':'1234'})
+            context['form2'] = self.second_form_class(instance=socioeconomic)
         if 'form3' not in context:
-            context['form3'] = self.three_form_class(self.request.GET)
+            context['form3'] = self.three_form_class(instance=health)
         if 'form4' not in context:
-            context['form4'] = self.four_form_class(self.request.GET)
+            context['form4'] = self.four_form_class(instance=attendant)
+        context['code_student'] = pk
         return context
 
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object
+        code_student = kwargs['pk']
+        student = self.model.objects.get(code_student=code_student)
+        socioeconomic = self.second_model.objects.get(code_student=student.code_student)
+        health = self.three_model.objects.get(code_student=student.code_student)
+        attendant = self.four_model.objects.get(code_student=student.code_student)
+        form = self.form_class(request.POST, instance=student)
+        form2 = self.second_form_class(request.POST, instance=socioeconomic)
+        form3 = self.three_form_class(request.POST, instance=health)
+        form4 = self.four_form_class(request.POST, instance=attendant)
+        if form.is_valid() and form2.is_valid() and form3.is_valid() and form4.is_valid():
+            form.save()
+            form2.save()
+            form3.save()
+            form4.save()
+            return self.form_valid(form)
+        else:
+            return self.form_invalid(form)
+
+#Fin Actulizaciones Multiples a Modelos Estudiantes ----------------------------------------------------------------------
 
 
 class RegisterpaymentsCreateView(SuccessMessageMixin, ContextDataMixin, CreateView):
