@@ -5,7 +5,7 @@ from django.contrib import messages
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse_lazy
-from django.views.generic import TemplateView, CreateView,ListView,UpdateView
+from django.views.generic import TemplateView, CreateView, ListView, UpdateView, DetailView, FormView
 from apps.student.form import registerpayments,registerstudentForm,registersocioeconomicForm,registerhealthForm, registerattendantForm
 from apps.student.models import Payments, Student, Socioeconomic, Health, Attendant
 
@@ -22,6 +22,7 @@ class ContextDataMixin(object):
 
 class InicioTemplateView(ContextDataMixin, TemplateView):
     template_name = 'student/index.html'
+
 
 #Inserciones Multiples en los Modelos Relacionados con Estudiantes ----------------------------------------------------
 class RegisterstudentCreateView(SuccessMessageMixin, ContextDataMixin,CreateView):
@@ -82,7 +83,7 @@ class SocioeconomicCreateView(CreateView):
     form_class = registersocioeconomicForm
 
 #Inicio Actualizaciones Multiples a Modelos Estudiantes ----------------------------------------------------------------------
-class UpdatestudentUpdateView(UpdateView):
+class UpdatestudentUpdateView(ContextDataMixin, UpdateView):
     model = Student
     second_model = Socioeconomic
     three_model = Health
@@ -133,8 +134,19 @@ class UpdatestudentUpdateView(UpdateView):
             return self.form_invalid(form)
 
 #Fin Actulizaciones Multiples a Modelos Estudiantes ----------------------------------------------------------------------
-
-
+class SearchstudentView(ListView):
+      
+    def post(self, request, *args, **kwargs):
+        code_student= request.POST['code_student']
+        student= Student.objects.get(code_student=code_student)
+        socioeconomic = Socioeconomic.objects.get(code_student=code_student)
+        health = Health.objects.get(code_student=code_student)
+        attendant = Attendant.objects.get(code_student=code_student)
+        return render(request,'student/searchstudent.html', {'student':student,
+                                                             'socioeconomic':socioeconomic,
+                                                             'health': health,
+                                                             'attendant':attendant})
+        
 class RegisterpaymentsCreateView(SuccessMessageMixin, ContextDataMixin, CreateView):
     template_name = 'finance/registerpayments.html'
     model = Payments

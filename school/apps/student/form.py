@@ -27,7 +27,7 @@ class registerpayments(forms.ModelForm):
         }
 
         widgets = {
-            'code_student': forms.Select(attrs={'class':'form-control' }),
+            'code_student': forms.TextInput(attrs={'class':'form-control' }),
             'paymentsconcepts': forms.Select(attrs={'class':'form-control', 'placeholder': 'Concepto de Pago'}),
             'valuepayments':forms.TextInput(attrs={'class':'form-control','placeholder':'Valor a Pagar'}),
             'datepayment':forms.TextInput(attrs={'class':'form-control','placeholder':'Fecha de Pago', 'type':'date'}),
@@ -114,9 +114,9 @@ class registerattendantForm(forms.ModelForm):
         widgets={'indetify_attendant':forms.TextInput(attrs={'class':'form-control'}),
                  'name_attendat':forms.TextInput(attrs={'class':'form-control'}),
                  'lastname_attendat':forms.TextInput(attrs={'class':'form-control'}),
-                 'email':forms.TextInput(attrs={'class':'form-control'}),
+                 'email':forms.TextInput(attrs={'class':'form-control', 'type':'email'}),
                  'address_attendant':forms.TextInput(attrs={'class':'form-control'}),
-                 'relationship':forms.TextInput(attrs={'class':'form-control'}),
+                 'relationship':forms.Select(attrs={'class':'form-control'}),
                  'number_telephone':forms.TextInput(attrs={'class':'form-control'}),
                  'number_cellphone':forms.TextInput(attrs={'class':'form-control'})}
 

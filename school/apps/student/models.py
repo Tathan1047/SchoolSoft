@@ -22,7 +22,7 @@ class Paymentsconcepts (models.Model):
 
     def __str__(self):
         return self.paymentsconcepts
-
+#Model EPS
 class Eps (models.Model):
     name_eps=models.CharField(max_length=50)
 
@@ -65,19 +65,20 @@ class Payments (models.Model):
     checknumber=models.CharField(max_length=30, blank=True)
     observations=models.CharField(max_length=50,blank=True)
 
-
+#model Socioeconomic Student
 class Socioeconomic (models.Model):
     code_student=models.ForeignKey(Student, blank=True, on_delete=models.CASCADE)
     filesisben=models.CharField(max_length=10, blank=True)
-    scoresisben=models.FloatField(blank=True)
+    scoresisben=models.FloatField(null=True, blank= True)
     stratum=models.CharField(choices=(("0", "0"),
-                                         ("1", "1"),
+                                         ("1", "Estrato 1"),
                                          ("2", "2"),
                                          ("3", "3"),
                                          ("4", "4"),
                                          ("5", "5"),
                                          ("6", "6"),
                                          ("7", "7"),),max_length=2)
+#Model Health Student
 class Health (models.Model):
     code_student=models.ForeignKey(Student, blank=True, on_delete=models.CASCADE)
     eps_affiliate=models.ForeignKey(Eps, blank=True, on_delete=models.CASCADE)
@@ -91,6 +92,7 @@ class Health (models.Model):
                                          ("AB-", "AB-"),
                                          ("AB+", "AB+"),),max_length=5)
 
+#Model Attendant Student
 class Attendant (models.Model):
     code_student=models.ForeignKey(Student, blank=False, on_delete=models.CASCADE)
     indetify_attendant=models.CharField(max_length=20, blank=False)
