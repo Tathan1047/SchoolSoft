@@ -3,7 +3,7 @@ from statistics import mean
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib import messages
 from django.http import HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView, CreateView, ListView, UpdateView, DetailView, FormView
 from apps.student.form import registerpayments,registerstudentForm,registersocioeconomicForm,registerhealthForm, registerattendantForm
@@ -136,13 +136,13 @@ class UpdatestudentUpdateView(ContextDataMixin, UpdateView):
 #Fin Actulizaciones Multiples a Modelos Estudiantes ----------------------------------------------------------------------
 class SearchstudentView(ListView):
       
-    def post(self, request, *args, **kwargs):
+    def post(self, request):
         code_student= request.POST['code_student']
         student= Student.objects.get(code_student=code_student)
         socioeconomic = Socioeconomic.objects.get(code_student=code_student)
         health = Health.objects.get(code_student=code_student)
         attendant = Attendant.objects.get(code_student=code_student)
-        return render(request,'student/searchstudent.html', {'student':student,
+        return render(request, 'student/infostudent.html', {'student':student,
                                                              'socioeconomic':socioeconomic,
                                                              'health': health,
                                                              'attendant':attendant})
@@ -159,5 +159,13 @@ class ListpaymentsView(ContextDataMixin, ListView):
     template_name = 'finance/list_general_payments.html'
     context_object_name = 'payments'
     model = Payments
+
+
+class SearchpaymentsView(ListView):
+
+    def post(self, request):
+        code_student = request.POST['code_student']
+        student = Student.objects.get(code_student=code_student)
+        return render(request, 'finance/registerpayments.html', {'student': student})
 
 

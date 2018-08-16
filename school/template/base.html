@@ -86,7 +86,7 @@
 							<a class="has-arrow" href="#" aria-expanded="false"><i class="icon dripicons-document"></i><span>Gestión Financiera</span></a>
 							<ul class="collapse nav-sub" aria-expanded="false">
 								<li><a href="{% url 'finance:registerpayments' %}"><i class="icon dripicons-plus"></i><span>&nbsp;Registrar Ingresos</span></a></li>
-                                <li><a href="#" data-toggle="modal" data-target="#ModalTitle4"></i><i class="icon dripicons-search"></i><span>&nbsp;Buscar Estudiante</span></a></li>
+                                <li><a href="#" data-toggle="modal" data-target=".bd-example-modal-sm1"></i><i class="icon dripicons-search"></i><span>&nbsp;Realizar Pago</span></a></li>
 								<li><a href="{% url 'finance:listpayments' %}"><i class="icon dripicons-list"></i><span> Listado General Ingresos</span></a></li>
 								<li><a href="auth.forgot-password.html"><span>Forgot Password</span></a></li>
 							</ul>
@@ -268,36 +268,9 @@
 								<div class="card-body">
 									<div id="monthly-budget">
                     {% block contentmodal %}
-                                        <form method="POST" action="{% url 'student:searchstudent' %}">
-                                        {% csrf_token %}
-                                            <div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog"
-                                                 aria-hidden="true">
-                                                <div class="modal-dialog modal-sm">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title" id="ModalTitle4">Buscar Estudiante</h5>
-                                                            <button type="button" class="close" data-dismiss="modal"
-                                                                    aria-label="Close">
-                                                                <span aria-hidden="true" class="zmdi zmdi-close"></span>
-                                                            </button>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <p>
-                                                            <input class="form-control" id="demoTextInput1" placeholder="Codigo Estudiante" name="code_student" type="text">
-                                                            </p>
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-danger btn-outline"
-                                                                    data-dismiss="modal">Cancelar
-                                                            </button>
-                                                            <button type="submit" class="btn btn-success btn-outline">
-                                                               Buscar
-                                                            </button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </form>
+                        {% include 'student/searchstudentmodal.html' %}
+                        {% include 'finance/searchpaymentsmodal.html' %}
+
                     {% endblock %}
                     {% block content %}
                     {% endblock %}

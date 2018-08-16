@@ -1,6 +1,7 @@
 from django.conf.urls import url
-from apps.student.views import InicioTemplateView, RegisterpaymentsCreateView, StudentListView, RegisterstudentCreateView,\
-    ListpaymentsView,UpdatestudentUpdateView, SearchstudentView
+from apps.student.views import (InicioTemplateView, RegisterpaymentsCreateView, StudentListView,
+                                RegisterstudentCreateView, ListpaymentsView, UpdatestudentUpdateView,
+                                SearchstudentView,SearchpaymentsView)
 
 urlpatterns = [
     url(r'^$', InicioTemplateView.as_view(), name="inicio"),
@@ -9,5 +10,6 @@ urlpatterns = [
     url(r'^registerstudent/$', RegisterstudentCreateView.as_view(), name="registerstudent"),
     url(r'^listpayments/$', ListpaymentsView.as_view(), name="listpayments"),
     url(r'^updatestudent/(?P<pk>\d+)/$', UpdatestudentUpdateView.as_view(), name="updatestudent"),
-    url(r'^searchestudent/$', SearchstudentView.as_view(), name="searchstudent")
+    url(r'^searchestudent/$', SearchstudentView.as_view(), name="searchstudent"),
+    url(r'^searchpayments/$', SearchpaymentsView.as_view(), name="searchpayments")
 ]

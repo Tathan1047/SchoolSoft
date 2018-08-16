@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
-{% block title %}Administrativa | Buscar {% endblock %}
+{% block title %}Info | Estudiante {% endblock %}
 {% block TitleForm %}{% endblock %}
 {% block bar %}{% endblock %}
 {% block content %}
@@ -53,6 +53,23 @@
                                                 <strong class="col-sm-4">Tipo de Sangre:</strong><span>{{ health.blood_type }}</span><br>
 
                                             </infosalud>
+                                        </div>
+                                    </div><br>
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-sm-12 col-md-6">
+                                            <div class="sub-title">Infomación Acudiente</div>
+                                            <infoacudiente class="address">
+
+                                                <strong class="col-sm-4">Identificación:</strong><span>{{ attendant.indetify_attendant }}</span><br>
+                                                <strong class="col-sm-4">Nombre Completo:</strong><span>{{ attendant.name_attendat }} {{ attendant.lastname_attendat }}</span><br>
+                                                <strong class="col-sm-4">Apellidos:</strong><span>{{ attendant.email }}</span><br>
+                                                <strong class="col-sm-4">Dirección:</strong><span>{{ attendant.address_attendant }}</span><br>
+                                                <strong class="col-sm-4">Parentesco:</strong><span>{{ attendant.relationship }}</span><br>
+                                                <strong class="col-sm-4">Teléfonos:</strong><span>{{ attendant.number_cellphone }} {{ attendant.number_telephone }}</span><br>
+
+
+                                            </infoacudiente>
                                         </div>
                                     </div>
                                 </div>

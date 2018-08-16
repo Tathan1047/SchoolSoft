@@ -1,0 +1,30 @@
+ <form method="POST" action="{% url 'student:searchpayments' %}">
+                                        {% csrf_token %}
+                                            <div class="modal fade bd-example-modal-sm1" tabindex="-1" role="dialog"
+                                                 aria-hidden="true">
+                                                <div class="modal-dialog modal-sm">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="Modalpayments">Realizar Pago Estudiante</h5>
+                                                            <button type="button" class="close" data-dismiss="modal"
+                                                                    aria-label="Close">
+                                                                <span aria-hidden="true" class="zmdi zmdi-close"></span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <p>
+                                                            <input class="form-control" id="demoTextInput1" placeholder="Codigo Estudiante" name="code_student" type="text">
+                                                            </p>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-danger btn-outline"
+                                                                    data-dismiss="modal">Cancelar
+                                                            </button>
+                                                            <button type="submit" class="btn btn-success btn-outline">
+                                                               Buscar
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
