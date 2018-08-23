@@ -5,7 +5,7 @@ from django.contrib import messages
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
-from django.views.generic import TemplateView, CreateView, ListView, UpdateView, DetailView, FormView
+from django.views.generic import TemplateView, CreateView, ListView, UpdateView, DeleteView, DetailView, FormView
 from apps.student.form import registerpayments,registerstudentForm,registersocioeconomicForm,registerhealthForm, registerattendantForm
 from apps.student.models import Payments, Student, Socioeconomic, Health, Attendant
 
@@ -15,7 +15,6 @@ class ContextDataMixin(object):
         kwargs.update(
             {'total_students': Student.objects.count(),
             'sum_income':Payments.objects.count()}
-
         )
         return super().get_context_data(**kwargs)
 
@@ -133,6 +132,13 @@ class UpdatestudentUpdateView(ContextDataMixin, UpdateView):
         else:
             return self.form_invalid(form)
 
+class DeletestudentView(DeleteView):
+    model = Student
+    template_name = 'student/deletestudent.html'
+    success_url = reverse_lazy('student:liststudents')
+
+
+
 #Fin Actulizaciones Multiples a Modelos Estudiantes ----------------------------------------------------------------------
 class SearchstudentView(ListView):
       
@@ -154,6 +160,27 @@ class RegisterpaymentsCreateView(SuccessMessageMixin, ContextDataMixin, CreateVi
     success_url = reverse_lazy('student:registerpayments')
     success_message = 'Pago del Codigo %(code_student)s ha sido Registrado satisfactoriamente'
 
+    def get(self, request, *args, **kwargs):
+        # Esto intenta obtener el valor de usuario, sino devuelve None
+        code_student = request.GET.get('code_student')
+        if code_student:
+            # Intentamos recuperar ese usario desde la DB
+            infostudent = Student.objects.get(code_student=code_student)
+            # Ese get puede fallar, deberías capturar la excepción
+            # Inicializamos el form con ese usuario ya cargado
+            kwargs.update({'students': infostudent})
+            form = self.form_class(initial=vars(infostudent))
+        else:
+            # Si no especificaron usuario en el request
+            # mostramos el form vacio
+            form = self.form_class()
+        kwargs.update({'form': form})
+        self.object = None
+        return self.render_to_response(self.get_context_data(**kwargs))
+        # return super(RegisterpaymentsCreateView, self).get(request, *args, **kwargs)
+
+
+
 
 class ListpaymentsView(ContextDataMixin, ListView):
     template_name = 'finance/list_general_payments.html'
@@ -167,5 +194,9 @@ class SearchpaymentsView(ListView):
         code_student = request.POST['code_student']
         student = Student.objects.get(code_student=code_student)
         return render(request, 'finance/registerpayments.html', {'student': student})
+
+    
+
+
 
 

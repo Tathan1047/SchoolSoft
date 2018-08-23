@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}Financiera | Pagos {% endblock %}
+{% block TitleForm %}{{ student.name_student }}{% endblock %}
+{% block content %}
+    <div class="form-group col-md-6">
+    <form method="post">
+    {% csrf_token %}
+    <h3>¿Desea Eliminar el registro de {{ object.name_student }} </h3>
+    <button type="submit" class="btn btn-danger">Si, Eliminar</button>
+    <a class="btn btn-default" href="{% url 'student:liststudents' %}">Cancelar</a>
+    </form>
+    </div>
+
+{% endblock %}

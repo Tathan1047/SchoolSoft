@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block title %}Financiera | Pagos {% endblock %}
-{% block TitleForm %}{{ student.name_student }}{% endblock %}
+{% block TitleForm %}{{ students.name_student }}{% endblock %}
 {% block content %}
 
     <div class="container-fluid card-body">
@@ -16,10 +16,12 @@
     {% endif %}
         <form method="post">
             {% csrf_token %}
+            {{ form.name_student }}
+
             <div class="form-row">
                 <div class="form-group col-md-6">
                      {{ form.code_student.label }}
-                     {{ form.code_student}}
+                     {{ form.code_student }}
                 </div>
                 <div class="form-group col-md-6">
                    {{ form.paymentsconcepts.label }}

@@ -27,7 +27,7 @@
                     <td>{{ student.cellphone_number }} {{ student.number_telephone }}</td>
                     <td>{{ student.register_date }}</td>
                     <td><a href="{% url 'student:updatestudent' student.code_student%}"  class="btn btn-success btn-outline"> <span class="icon dripicons-document-edit"></span></a>
-                        <a href="{% url 'student:registerstudent' %}"  class="btn btn-danger btn-outline"> <span class="icon dripicons-document-delete"></span></a>
+                        <a href="{% url 'student:deletestudent' student.code_student%}"  class="btn btn-danger btn-outline"> <span class="icon dripicons-document-delete"></span></a>
                     </td>
 
                 </tr>
