@@ -178,7 +178,6 @@ class RegisterpaymentsCreateView(SuccessMessageMixin, ContextDataMixin, CreateVi
         kwargs.update({'form': form})
         self.object = None
         return self.render_to_response(self.get_context_data(**kwargs))
-        # return super(RegisterpaymentsCreateView, self).get(request, *args, **kwargs)
 
 
 
