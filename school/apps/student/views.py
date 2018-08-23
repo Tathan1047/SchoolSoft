@@ -2,6 +2,7 @@ from statistics import mean
 
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib import messages
+from django.db.models import Sum
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
@@ -14,7 +15,7 @@ class ContextDataMixin(object):
     def get_context_data(self, **kwargs):
         kwargs.update(
             {'total_students': Student.objects.count(),
-            'sum_income':Payments.objects.count()}
+            'sum_income':Payments.objects.all().aggregate(total = Sum('valuepayments'))['total']}
         )
         return super().get_context_data(**kwargs)
 

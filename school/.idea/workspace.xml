@@ -28,11 +28,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/apps/student/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2064">
-              <caret line="12" column="31" selection-start-line="12" selection-start-column="31" selection-end-line="12" selection-end-column="31" />
+            <state relative-caret-position="240">
+              <caret line="17" column="86" selection-start-line="17" selection-start-column="86" selection-end-line="17" selection-end-column="86" />
               <folding>
                 <element signature="e#0#27#0" expanded="true" />
               </folding>
@@ -40,7 +40,16 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="registerpayments.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/apps/student/models.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="305">
+              <caret line="60" column="16" selection-start-line="60" selection-start-column="4" selection-end-line="60" selection-end-column="17" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="registerpayments.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/template/finance/registerpayments.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="30">
@@ -52,8 +61,8 @@
       <file leaf-file-name="base.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/template/base.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="265" column="57" selection-start-line="265" selection-start-column="36" selection-end-line="265" selection-end-column="57" />
+            <state relative-caret-position="450">
+              <caret line="246" column="49" lean-forward="true" selection-start-line="246" selection-start-column="49" selection-end-line="246" selection-end-column="49" />
             </state>
           </provider>
         </entry>
@@ -108,8 +117,8 @@
         <option value="$PROJECT_DIR$/apps/student/urls.py" />
         <option value="$PROJECT_DIR$/template/student/deletestudent.html" />
         <option value="$PROJECT_DIR$/template/finance/searchpaymentsmodal.html" />
-        <option value="$PROJECT_DIR$/apps/student/views.py" />
         <option value="$PROJECT_DIR$/template/finance/registerpayments.html" />
+        <option value="$PROJECT_DIR$/apps/student/views.py" />
       </list>
     </option>
   </component>
@@ -239,15 +248,15 @@
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Python Console" order="10" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.2260579" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.2260579" />
       <window_info anchor="bottom" id="Terminal" order="12" weight="0.32628062" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.15848452" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.15848452" />
       <window_info anchor="bottom" id="Docker" order="11" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="3" weight="0.32969603" />
       <window_info anchor="right" id="SciView" order="4" weight="0.32977587" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Debug" order="3" visible="true" weight="0.31403118" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.31403118" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -540,13 +549,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/apps/student/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="825">
-          <caret line="58" column="69" lean-forward="true" selection-start-line="58" selection-start-column="4" selection-end-line="58" selection-end-column="69" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/.virtualenvs/school/lib/python3.6/site-packages/django/forms/templates/django/forms/widgets/attrs.html">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -591,16 +593,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/apps/student/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2064">
-          <caret line="12" column="31" selection-start-line="12" selection-start-column="31" selection-end-line="12" selection-end-column="31" />
-          <folding>
-            <element signature="e#0#27#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/template/student/deletestudent.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
@@ -632,10 +624,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/apps/student/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="305">
+          <caret line="60" column="16" selection-start-line="60" selection-start-column="4" selection-end-line="60" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/template/base.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="265" column="57" selection-start-line="265" selection-start-column="36" selection-end-line="265" selection-end-column="57" />
+        <state relative-caret-position="450">
+          <caret line="246" column="49" lean-forward="true" selection-start-line="246" selection-start-column="49" selection-end-line="246" selection-end-column="49" />
         </state>
       </provider>
     </entry>
@@ -643,6 +642,16 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
           <caret line="2" column="32" selection-start-line="2" selection-start-column="32" selection-end-line="2" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/student/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="17" column="86" selection-start-line="17" selection-start-column="86" selection-end-line="17" selection-end-column="86" />
+          <folding>
+            <element signature="e#0#27#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
