@@ -165,7 +165,7 @@ class RegisterpaymentsCreateView(SuccessMessageMixin, ContextDataMixin, CreateVi
         # Esto intenta obtener el valor de usuario, sino devuelve None
         code_student = request.GET.get('code_student')
         if code_student:
-            # Intentamos recuperar ese usario desde la DB
+            # Intentamos recuperar ese usario desde la DB:
             infostudent = Student.objects.get(code_student=code_student)
             # Ese get puede fallar, deberías capturar la excepción
             # Inicializamos el form con ese usuario ya cargado
